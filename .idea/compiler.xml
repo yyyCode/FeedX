@@ -12,29 +12,28 @@
         <module name="common-minio" />
         <module name="count" />
         <module name="common-log" />
+        <module name="order-api" />
         <module name="common-redis" />
         <module name="common-schedule" />
-        <module name="common-api" />
         <module name="feed" />
+        <module name="user-api" />
         <module name="common-kafka" />
+        <module name="feed-api" />
         <module name="interaction" />
         <module name="common-seata" />
+        <module name="interaction-api" />
+        <module name="count-api" />
         <module name="user" />
+        <module name="item-api" />
         <module name="gateway" />
         <module name="order" />
         <module name="common-core" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="count-api" target="1.8" />
-      <module name="feed-api" target="1.8" />
-      <module name="interaction-api" target="1.8" />
-      <module name="item-api" target="1.8" />
       <module name="kafka" target="17" />
-      <module name="order-api" target="1.8" />
       <module name="recommend" target="17" />
       <module name="redis" target="17" />
-      <module name="user-api" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

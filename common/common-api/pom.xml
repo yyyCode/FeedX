@@ -8,10 +8,18 @@
     </parent>
 
     <artifactId>common-api</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>common-api</name>
     <url>http://maven.apache.org</url>
+    <modules>
+        <module>count-api</module>
+        <module>feed-api</module>
+        <module>interaction-api</module>
+        <module>order-api</module>
+        <module>item-api</module>
+        <module>user-api</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
