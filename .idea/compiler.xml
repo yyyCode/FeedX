@@ -40,7 +40,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="count" options="-parameters" />
       <module name="feed" options="-parameters" />
-      <module name="gateway" options="-parameters" />
+      <module name="gateway" options="" />
       <module name="interaction" options="-parameters" />
       <module name="item" options="-parameters" />
       <module name="order" options="-parameters" />
