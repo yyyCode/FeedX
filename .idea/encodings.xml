@@ -1,8 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/business/count/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/feed/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/interaction/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/item/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/order/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/user/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-canal/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-canal/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-kafka/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-kafka/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-log/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-log/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-minio/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-minio/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-redis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-redis/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-schedule/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-schedule/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-seata/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-seata/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-security/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-security/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/kafka/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/kafka/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/redis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/redis/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />

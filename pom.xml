@@ -11,6 +11,10 @@
   <url>http://maven.apache.org</url>
   <modules>
     <module>business</module>
+    <module>common</module>
+    <module>common/common-api</module>
+    <module>common/common-canal</module>
+    <module>common/common-core</module>
   </modules>
 
   <properties>

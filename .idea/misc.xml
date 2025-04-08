@@ -5,11 +5,24 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/business/count/pom.xml" />
+        <option value="$PROJECT_DIR$/business/feed/pom.xml" />
+        <option value="$PROJECT_DIR$/business/item/pom.xml" />
+        <option value="$PROJECT_DIR$/business/order/pom.xml" />
+        <option value="$PROJECT_DIR$/business/interaction/pom.xml" />
+        <option value="$PROJECT_DIR$/business/user/pom.xml" />
+        <option value="$PROJECT_DIR$/business/recommend/pom.xml" />
         <option value="$PROJECT_DIR$/gateway/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/common/kafka/pom.xml" />
+        <option value="$PROJECT_DIR$/common/redis/pom.xml" />
+      </set>
+    </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="21" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
