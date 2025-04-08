@@ -2,13 +2,19 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/business/count/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/count/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/feed/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/feed/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/interaction/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/interaction/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/item/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/item/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/order/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/order/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/user/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/user/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/common-api/count-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/common-api/count-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/common-api/feed-api/src/main/java" charset="UTF-8" />
