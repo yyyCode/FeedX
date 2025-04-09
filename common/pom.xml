@@ -23,7 +23,6 @@
         <module>common-schedule</module>
         <module>common-seata</module>
         <module>common-security</module>
-        <module>common-api/item-api</module>
     </modules>
 
     <properties>
