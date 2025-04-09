@@ -1,6 +1,7 @@
 package com.yqz.redis.configure;
 
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnSingleCandidate;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -17,6 +18,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 public class RedisConfig extends CachingConfigurerSupport {
     @Bean
     @SuppressWarnings(value = {"unchecked", "rawtypes"})
+    @ConditionalOnSingleCandidate
     public<V> RedisTemplate<String, V> redisTemplate(RedisConnectionFactory connectionFactory) {
         RedisTemplate<String, V> template = new RedisTemplate<>();
         template.setConnectionFactory(connectionFactory);
