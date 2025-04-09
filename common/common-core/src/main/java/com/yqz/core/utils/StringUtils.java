@@ -1,13 +1,19 @@
 package com.yqz.core.utils;
 
-import cn.hutool.core.text.StrFormatter;
+
 import com.yqz.core.constant.Constants;
+import com.yqz.core.text.StrFormatter;
 import org.springframework.util.AntPathMatcher;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 字符串工具类
+ *
+ * @author phix
+ */
 public class StringUtils extends org.apache.commons.lang3.StringUtils
 {
     /** 空字符串 */

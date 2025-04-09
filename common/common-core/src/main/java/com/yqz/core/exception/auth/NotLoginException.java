@@ -1,4 +1,16 @@
 package com.yqz.core.exception.auth;
 
-public class NotLoginException {
+/**
+ * 未能通过的登录认证异常
+ * 
+ * @author phix
+ */
+public class NotLoginException extends RuntimeException
+{
+    private static final long serialVersionUID = 1L;
+
+    public NotLoginException(String message)
+    {
+        super(message);
+    }
 }
