@@ -38,13 +38,28 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="count" options="" />
-      <module name="feed" options="" />
-      <module name="gateway" options="" />
-      <module name="interaction" options="" />
-      <module name="item" options="" />
-      <module name="order" options="" />
-      <module name="user" options="" />
+      <module name="common-canal" options="-parameters" />
+      <module name="common-core" options="-parameters" />
+      <module name="common-kafka" options="-parameters" />
+      <module name="common-log" options="-parameters" />
+      <module name="common-minio" options="-parameters" />
+      <module name="common-redis" options="-parameters" />
+      <module name="common-schedule" options="-parameters" />
+      <module name="common-seata" options="-parameters" />
+      <module name="common-security" options="-parameters" />
+      <module name="count" options="-parameters" />
+      <module name="count-api" options="-parameters" />
+      <module name="feed" options="-parameters" />
+      <module name="feed-api" options="-parameters" />
+      <module name="gateway" options="-parameters" />
+      <module name="interaction" options="-parameters" />
+      <module name="interaction-api" options="-parameters" />
+      <module name="item" options="-parameters" />
+      <module name="item-api" options="-parameters" />
+      <module name="order" options="-parameters" />
+      <module name="order-api" options="-parameters" />
+      <module name="user" options="-parameters" />
+      <module name="user-api" options="-parameters" />
     </option>
   </component>
 </project>

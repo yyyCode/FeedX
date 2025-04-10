@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Configuration
-
 public class RedissionConfig {
     private final String REDISSON_PREFIX = "redis://";
     private final RedisProperties redisProperties;
