@@ -12,6 +12,7 @@
         <module name="common-minio" />
         <module name="count" />
         <module name="common-log" />
+        <module name="recommend" />
         <module name="order-api" />
         <module name="common-redis" />
         <module name="common-schedule" />
@@ -32,7 +33,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="kafka" target="17" />
-      <module name="recommend" target="17" />
       <module name="redis" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -58,6 +58,7 @@
       <module name="item-api" options="-parameters" />
       <module name="order" options="-parameters" />
       <module name="order-api" options="-parameters" />
+      <module name="recommend" options="-parameters" />
       <module name="user" options="-parameters" />
       <module name="user-api" options="-parameters" />
     </option>
