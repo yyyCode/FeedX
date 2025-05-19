@@ -11,6 +11,7 @@
     <file url="file://$PROJECT_DIR$/business/item/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/order/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/order/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/business/profile/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/recommend/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/business/src/main/resources" charset="UTF-8" />
@@ -26,6 +27,7 @@
     <file url="file://$PROJECT_DIR$/common/common-api/item-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/common-api/order-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/common-api/order-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/common-api/recommend-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/common-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/common-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/common-api/user-api/src/main/java" charset="UTF-8" />

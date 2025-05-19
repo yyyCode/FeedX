@@ -6,28 +6,30 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="common-security" />
-        <module name="item" />
-        <module name="common-canal" />
         <module name="common-minio" />
-        <module name="count" />
-        <module name="common-log" />
         <module name="recommend" />
         <module name="order-api" />
         <module name="common-redis" />
+        <module name="user-api" />
+        <module name="recommend-api" />
+        <module name="feed-api" />
+        <module name="count-api" />
+        <module name="order" />
+        <module name="common-security" />
+        <module name="item" />
+        <module name="common-canal" />
+        <module name="profile" />
+        <module name="count" />
+        <module name="common-log" />
         <module name="common-schedule" />
         <module name="feed" />
-        <module name="user-api" />
         <module name="common-kafka" />
-        <module name="feed-api" />
         <module name="interaction" />
         <module name="common-seata" />
         <module name="interaction-api" />
-        <module name="count-api" />
         <module name="user" />
         <module name="item-api" />
         <module name="gateway" />
-        <module name="order" />
         <module name="common-core" />
       </profile>
     </annotationProcessing>
@@ -58,7 +60,9 @@
       <module name="item-api" options="-parameters" />
       <module name="order" options="-parameters" />
       <module name="order-api" options="-parameters" />
+      <module name="profile" options="-parameters" />
       <module name="recommend" options="-parameters" />
+      <module name="recommend-api" options="-parameters" />
       <module name="user" options="-parameters" />
       <module name="user-api" options="-parameters" />
     </option>
