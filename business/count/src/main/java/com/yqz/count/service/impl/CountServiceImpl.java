@@ -16,6 +16,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
 /**
  * @Description: TODO
@@ -28,10 +29,15 @@ import javax.annotation.PostConstruct;
 @DubboService(interfaceClass = CountServiceIRPC.class)
 public class CountServiceImpl implements CountService, CountServiceIRPC {
 
+    @Resource
+    private RedisTemplate redisTemplate;
+
 
     @Override
     public Long getLikeCountByItemId(Long itemId) {
-        return 0L;
+        // todo 按照itemId来查询点赞量
+        Object o = redisTemplate.opsForValue().get("item:" + itemId + ":like");
+        return (Long) o;
     }
 
     @Override
