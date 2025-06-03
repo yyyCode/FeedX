@@ -55,7 +55,6 @@ public class CountServiceImpl implements CountService, CountServiceIRPC {
 
     @Override
     public Integer like(LikeBo likeBo) {
-        // todo 完善请求合并工具类
         itemId = likeBo.getItemId();
         RBloomFilter<Object> bloomFilter = redissonClient.getBloomFilter(likeBo.getUserId() + ":like:" + "Bloom");
         bloomFilter.tryInit(1000L,0.01);

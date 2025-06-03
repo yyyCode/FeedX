@@ -1,9 +1,0 @@
-package com.yqz.recommend.service;
-
-import com.yqz.recommend.entity.FeedItemDTO;
-
-import java.util.List;
-
-public interface RecommendService {
-    List<FeedItemDTO> recommend(Long userId);
-}
