@@ -61,8 +61,9 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item>
 
     @Autowired
     private ItemMapper itemMapper;
+
     @Autowired
-    private RedisTemplate<String, V> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
 
     @Override

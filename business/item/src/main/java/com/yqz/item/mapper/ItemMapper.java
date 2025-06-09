@@ -2,6 +2,7 @@ package com.yqz.item.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yqz.item.po.Item;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
 * @author 86139
@@ -9,6 +10,7 @@ import com.yqz.item.po.Item;
 * @createDate 2024-02-26 17:34:23
 * @Entity com.ysm.item.po.Item
 */
+@Mapper
 public interface ItemMapper extends BaseMapper<Item> {
 
 }
