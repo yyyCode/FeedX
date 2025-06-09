@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="common-minio" />
-        <module name="recommend" />
         <module name="order-api" />
         <module name="common-redis" />
         <module name="user-api" />
@@ -18,7 +17,6 @@
         <module name="common-security" />
         <module name="item" />
         <module name="common-canal" />
-        <module name="profile" />
         <module name="count" />
         <module name="common-log" />
         <module name="common-schedule" />
@@ -35,6 +33,8 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="kafka" target="17" />
+      <module name="profile" target="17" />
+      <module name="recommend" target="17" />
       <module name="redis" target="17" />
     </bytecodeTargetLevel>
   </component>

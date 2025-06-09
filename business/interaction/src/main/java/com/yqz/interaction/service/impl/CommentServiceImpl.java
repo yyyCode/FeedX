@@ -32,12 +32,17 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment>
 
     @Override
     public void comment(Comment comment) {
+        // 保存评论
         if (save(comment)){
             // 发送消息队列  异步更新计数
             kafkaTemplate.send("item_count_comment",comment.getItemId()+":1");
         }
     }
 
+    /**
+     * 获取评论列表，按照创建时间降序排列
+     * @param commentId 评论ID
+     */
     @Override
     public List<Comment> getCommentList(Long itemId, Integer current) {
         LambdaQueryWrapper<Comment> wrapper = new LambdaQueryWrapper<>();

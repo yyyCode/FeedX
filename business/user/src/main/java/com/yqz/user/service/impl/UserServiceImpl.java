@@ -26,6 +26,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
                 .eq(User::getPassword,password);
         return getOne(wrapper);
     }
+
+
+
+    public User register(User user) {
+        // 检查用户名是否已存在
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User::getUsername, user.getUsername());
+        User existingUser = getOne(wrapper);
+
+        if (existingUser != null) {
+            throw new RuntimeException("用户名已存在");
+        }
+
+        // 保存新用户
+        save(user);
+        return user;
+    }
 }
 
 

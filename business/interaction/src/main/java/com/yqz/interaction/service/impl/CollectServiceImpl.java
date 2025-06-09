@@ -23,19 +23,51 @@ import java.util.stream.LongStream;
 public class CollectServiceImpl extends ServiceImpl<CollectMapper, Collect>
     implements CollectService {
 
+    @Autowired
+    private KafkaTemplate kafkaTemplate;
+
+
     @Override
     public void collect(Long itemId, Long userId) {
-
+        Collect collect = new Collect();
+        collect.setItemId(itemId);
+        collect.setUserId(userId);
+      if (save(collect)) {
+            // 发送消息队列，异步更新计数
+            kafkaTemplate.send("item_count_collect", itemId + ":1");
+      }
     }
 
     @Override
     public void cancel(Long itemId, Long userId) {
+        LambdaQueryWrapper<Collect> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Collect::getItemId, itemId)
+                    .eq(Collect::getUserId, userId);
+        if (remove(queryWrapper)) {
+            // 发送消息队列，异步更新计数
+            kafkaTemplate.send("item_count_collect", itemId + ":-1");
+        }
 
     }
 
     @Override
     public List<Long> listCollect(Integer current, Long userId) {
-        return List.of();
+        // 创建分页对象
+        Page<Collect> collectPage = new Page<>(current,20);
+
+        // 创建查询条件
+        LambdaQueryWrapper<Collect> wrapper = new LambdaQueryWrapper<>();
+        wrapper.select(Collect::getId,Collect::getItemId)
+                .eq(Collect::getUserId,userId)
+                .orderByDesc(Collect::getCreatedAt);
+
+        // 执行分页查询
+        return page(collectPage,wrapper)
+                .getRecords() // 结果转换
+                .stream()
+                .flatMapToLong(collect -> LongStream.of(collect.getId()))
+                .boxed()
+                .collect(Collectors.toList());
     }
 }
 

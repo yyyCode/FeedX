@@ -1,5 +1,6 @@
 package com.yqz.item.service.impl;
 
+import cn.hutool.core.lang.hash.Hash32;
 import com.alibaba.fastjson2.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 
@@ -39,8 +40,58 @@ import java.util.concurrent.CompletableFuture;
 public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item>
         implements ItemServiceIRPC, ItemService {
 
+    @Autowired
+    private MinioUtil minioUtil;
+
+
+    @Autowired
+    private RedisService redisService;
+
+    @Autowired
+    @Qualifier(value = "redissonClient")
+    private RedissonClient redissonClient;
+
+    @DubboReference
+    private FollowServiceIRPC followServiceIRPC;
+
+    @Autowired
+    private KafkaTemplate<String, Object> kafkaTemplate;
+
+
+
+    @Autowired
+    private ItemMapper itemMapper;
+    @Autowired
+    private RedisTemplate<String, V> redisTemplate;
+
+
     @Override
     public void postItem(MultipartFile file, Item itemBo) throws Exception {
+        String filePath= minioUtil.uploadFile(file, file.getOriginalFilename(), file.getContentType());
+        Assert.notNull(filePath, "文件上传失败");
+        itemBo.setVideoUrl(filePath);
+        Assert.isTrue(itemMapper.insert(itemBo)>0,"上传成功");
+        // 获取粉丝数量
+        Long followerCount = followServiceIRPC.getFollowerCount(itemBo.getUserId());
+        if(followerCount>1000L){
+            // 是大V，更新到outBox
+            RedisTemplate redisTemplate = redisService.redisTemplate;
+            redisTemplate.opsForZSet().add("feed:outbox:" + itemBo.getUserId().toString(),
+                    itemBo.getId(),
+                    (double) itemBo.getCreatedAt().toEpochSecond(ZoneOffset.of("+8")));
+
+        }else{
+            // 不是大V，更新到粉丝inBox
+            List<Long> fansIds = followServiceIRPC.listFansId(itemBo.getUserId());
+            CompletableFuture.runAsync(()->fansIds.forEach(fansId -> {
+                HashMap<String,String> hashMap = new HashMap<>();
+                hashMap.put("itemId", itemBo.getId().toString());
+                hashMap.put("fanId", fansId.toString());
+                hashMap.put("score",Long.valueOf(itemBo.getCreatedAt().toEpochSecond(ZoneOffset.of("+8"))).toString());
+                kafkaTemplate.send("user_inbox", JSON.toJSONString(hashMap));
+            }));
+
+        }
 
     }
 
