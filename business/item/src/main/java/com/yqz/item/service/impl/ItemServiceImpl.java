@@ -75,6 +75,7 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item>
         // 获取粉丝数量
         Long followerCount = followServiceIRPC.getFollowerCount(itemBo.getUserId());
         if(followerCount>1000L){
+
             // 是大V，更新到outBox
             RedisTemplate redisTemplate = redisService.redisTemplate;
             redisTemplate.opsForZSet().add("feed:outbox:" + itemBo.getUserId().toString(),
