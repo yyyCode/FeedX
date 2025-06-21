@@ -20,8 +20,7 @@
       <set>
         <option value="$PROJECT_DIR$/business/profile/pom.xml" />
         <option value="$PROJECT_DIR$/business/recommend/pom.xml" />
-        <option value="$PROJECT_DIR$/common/kafka/pom.xml" />
-        <option value="$PROJECT_DIR$/common/redis/pom.xml" />
+        <option value="$PROJECT_DIR$/common/minio/pom.xml" />
       </set>
     </option>
   </component>
