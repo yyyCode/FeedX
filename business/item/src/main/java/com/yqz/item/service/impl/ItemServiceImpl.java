@@ -75,10 +75,13 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item>
         // 获取粉丝数量
         Long followerCount = followServiceIRPC.getFollowerCount(itemBo.getUserId());
         if(followerCount>1000L){
+            // todo hash分片，避免大Key
+            int shardId=calculateShardId(itemBo.getUserId(),itemBo.getId());
+            String outBoxKey = String.format("feed:outbox:%s:%d",itemBo.getUserId(),shardId);
 
             // 是大V，更新到outBox
             RedisTemplate redisTemplate = redisService.redisTemplate;
-            redisTemplate.opsForZSet().add("feed:outbox:" + itemBo.getUserId().toString(),
+            redisTemplate.opsForZSet().add(outBoxKey,
                     itemBo.getId(),
                     (double) itemBo.getCreatedAt().toEpochSecond(ZoneOffset.of("+8")));
 
@@ -96,6 +99,13 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item>
         }
 
     }
+
+
+    // 分片算法：按用户ID和动态ID哈希分片
+    private int calculateShardId(Long userId, Long itemId) {
+        return (userId.hashCode() ^ itemId.hashCode()) % 10; // 分10片
+    }
+
 
     @Override
     public List<Item> listItem(String targetId) {

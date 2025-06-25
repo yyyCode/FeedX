@@ -6,35 +6,35 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="common-minio" />
-        <module name="order-api" />
-        <module name="common-redis" />
-        <module name="user-api" />
-        <module name="recommend-api" />
-        <module name="feed-api" />
-        <module name="count-api" />
-        <module name="order" />
         <module name="common-security" />
         <module name="item" />
+        <module name="common-minio" />
         <module name="common-canal" />
         <module name="count" />
         <module name="common-log" />
+        <module name="recommend" />
+        <module name="order-api" />
+        <module name="common-redis" />
         <module name="common-schedule" />
         <module name="feed" />
+        <module name="user-api" />
+        <module name="recommend-api" />
         <module name="common-kafka" />
+        <module name="feed-api" />
         <module name="interaction" />
         <module name="common-seata" />
         <module name="interaction-api" />
+        <module name="count-api" />
         <module name="user" />
         <module name="item-api" />
         <module name="gateway" />
+        <module name="order" />
         <module name="common-core" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="kafka" target="17" />
       <module name="profile" target="17" />
-      <module name="recommend" target="17" />
       <module name="redis" target="17" />
     </bytecodeTargetLevel>
   </component>

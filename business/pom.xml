@@ -23,6 +23,7 @@
         <module>interaction</module>
         <module>user</module>
         <module>count</module>
+        <module>recommend</module>
     </modules>
 
     <dependencies>
