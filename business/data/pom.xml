@@ -26,7 +26,9 @@
         <url/>
     </scm>
     <properties>
+        <flink.version>1.17.1</flink.version>
         <java.version>17</java.version>
+        <scala.binary.version>2.12</scala.binary.version>
     </properties>
     <dependencies>
         <dependency>
@@ -39,6 +41,59 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+
+        <!-- Flink 核心依赖 -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-java</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+
+        <!-- 统一使用 Scala 2.12 版本 -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
+            <version> 1.14.6</version>
+            <!-- 除非明确需要 provided 否则去掉 scope -->
+        </dependency>
+
+        <!-- 如果需要 Scala API -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-scala_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+
+
+
+        <!-- Kafka 连接器 -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-kafka</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+
+
+        <!-- JSON 处理 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.3</version>
+        </dependency>
+
+        <!-- Redis 客户端 -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>4.4.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

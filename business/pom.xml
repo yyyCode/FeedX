@@ -24,6 +24,7 @@
         <module>user</module>
         <module>count</module>
         <module>recommend</module>
+        <module>data</module>
     </modules>
 
     <dependencies>
