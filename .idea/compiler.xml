@@ -6,29 +6,30 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="common-security" />
-        <module name="item" />
+        <module name="data" />
         <module name="common-minio" />
-        <module name="common-canal" />
-        <module name="count" />
-        <module name="common-log" />
         <module name="recommend" />
         <module name="order-api" />
         <module name="common-redis" />
-        <module name="common-schedule" />
-        <module name="feed" />
         <module name="user-api" />
         <module name="recommend-api" />
-        <module name="common-kafka" />
         <module name="feed-api" />
+        <module name="count-api" />
+        <module name="order" />
+        <module name="common-security" />
+        <module name="item" />
+        <module name="common-canal" />
+        <module name="count" />
+        <module name="common-log" />
+        <module name="common-schedule" />
+        <module name="feed" />
+        <module name="common-kafka" />
         <module name="interaction" />
         <module name="common-seata" />
         <module name="interaction-api" />
-        <module name="count-api" />
         <module name="user" />
         <module name="item-api" />
         <module name="gateway" />
-        <module name="order" />
         <module name="common-core" />
       </profile>
     </annotationProcessing>
@@ -51,6 +52,7 @@
       <module name="common-security" options="-parameters" />
       <module name="count" options="-parameters" />
       <module name="count-api" options="-parameters" />
+      <module name="data" options="-parameters" />
       <module name="feed" options="-parameters" />
       <module name="feed-api" options="-parameters" />
       <module name="gateway" options="-parameters" />

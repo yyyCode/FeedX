@@ -1,5 +1,6 @@
 package com.yqz.user.rpc.impl;
 
+import com.yqz.core.entity.UserHistory;
 import com.yqz.core.utils.bean.BeanUtils;
 import com.yqz.user.api.UserServiceI;
 import com.yqz.user.dto.UserDTO;
@@ -8,6 +9,8 @@ import com.yqz.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  * @Description: TODO
@@ -40,5 +43,16 @@ public class UserServiceImplRPC implements UserServiceI {
         UserDTO userDTO = new UserDTO();
         BeanUtils.copyBeanProp(userDTO,user);
         return userDTO;
+    }
+
+
+    /**
+     * 获取用户历史数据
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<UserHistory> getUserHistoryById(Long userId) {
+        return null;
     }
 }
