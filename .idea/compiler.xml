@@ -6,13 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="data" />
         <module name="common-minio" />
-        <module name="recommend" />
         <module name="order-api" />
         <module name="common-redis" />
         <module name="user-api" />
-        <module name="recommend-api" />
         <module name="feed-api" />
         <module name="count-api" />
         <module name="order" />
@@ -34,8 +31,11 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="data" target="17" />
       <module name="kafka" target="17" />
       <module name="profile" target="17" />
+      <module name="recommend" target="17" />
+      <module name="recommend-api" target="1.8" />
       <module name="redis" target="17" />
     </bytecodeTargetLevel>
   </component>
