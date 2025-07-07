@@ -1,8 +1,0 @@
-spring:
-  data:
-
-# kafka配置
-  kafka:
-    bootstrap-servers:
-    producer:
-    consumer:
