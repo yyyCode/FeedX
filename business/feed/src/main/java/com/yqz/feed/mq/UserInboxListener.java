@@ -13,6 +13,11 @@ public class UserInboxListener {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    /**
+     * * 监听用户收件箱删除消息
+     * @param record
+     * @param ack
+     */
     @KafkaListener(topics = "user_inbox_del",groupId = KafkaConstant.DEFAULT_GROUP)
     public void listenInbox(ConsumerRecord<String, String> record, Acknowledgment ack){
         String value = record.value();
