@@ -112,52 +112,36 @@ public class FeedServiceImpl implements FeedService {
             redisTemplate.opsForValue().set(userId + ":feed:" + "offset", lastOffset); //更新redis缓存
 
         }
-/*
 
         // todo 主要性能瓶颈，想办法解决
-        sortSet.forEach(e ->{
-            FeedVo feedVo = new FeedVo();
-            Long itemId=e.getValue();
-            ItemDTO item = itemServiceIRPC.getItem(itemId);
-            feedVo.setItem(item);
-
-            UserDTO author = userServiceI.getUserDTOById(item.getUserId());
-            feedVo.setAuthor(author);
-
-            StatisticsDTO statisticsDTO = countServiceIRPC.getStatisticsDTO(itemId);
-            StatisticsVo statisticsVo = new StatisticsVo();
-
-            feedVos.add(feedVo);
-        });
-
-
-*/
-
-        // 2. 并行获取 FeedVo 数据
         List<CompletableFuture<FeedVo>> futures = sortSet.stream()
-                .map(e -> CompletableFuture.supplyAsync(() -> {
+                .map(e -> {
                     Long itemId = e.getValue();
-                    FeedVo feedVo = new FeedVo();
+                    return CompletableFuture.supplyAsync(() -> itemServiceIRPC.getItem(itemId), executor)
+                            .thenCompose(item -> {
+                                CompletableFuture<UserDTO> userFuture =
+                                        CompletableFuture.supplyAsync(() -> userServiceI.getUserDTOById(item.getUserId()), executor);
+                                CompletableFuture<StatisticsDTO> statsFuture =
+                                        CompletableFuture.supplyAsync(() -> countServiceIRPC.getStatisticsDTO(itemId), executor);
 
-                    // 并行发起所有 RPC 调用（无嵌套）
-                    CompletableFuture<ItemDTO> itemFuture = CompletableFuture.supplyAsync(
-                            () -> itemServiceIRPC.getItem(itemId), executor);
-                    CompletableFuture<UserDTO> userFuture = CompletableFuture.supplyAsync(
-                            () -> userServiceI.getUserDTOById(itemFuture.join().getUserId()), executor);
-                    CompletableFuture<StatisticsDTO> statsFuture = CompletableFuture.supplyAsync(
-                            () -> countServiceIRPC.getStatisticsDTO(itemId), executor);
-
-                    // 合并结果
-                    feedVo.setItem(itemFuture.join());
-                    feedVo.setAuthor(userFuture.join());
-                    feedVo.setStatistics(StatisticsVo.getStatisticsVo(statsFuture.join()));
-                    return feedVo;
-                }, executor))
+                                return userFuture.thenCombine(statsFuture, (user, stats) -> {
+                                    FeedVo feedVo = new FeedVo();
+                                    feedVo.setItem(item);
+                                    feedVo.setAuthor(user);
+                                    feedVo.setStatistics(StatisticsVo.getStatisticsVo(stats));
+                                    return feedVo;
+                                });
+                            });
+                })
                 .collect(Collectors.toList());
-                // 3. 等待所有任务完成
+
+        // 等待所有任务完成
         List<FeedVo> feedVos = futures.stream()
                 .map(CompletableFuture::join)
                 .collect(Collectors.toList());
+
+
+
 
 
         kafkaTemplate.send("user_inbox_del", userId + ":" + lastOffset);
