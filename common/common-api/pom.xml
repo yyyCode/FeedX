@@ -19,7 +19,6 @@
         <module>order-api</module>
         <module>item-api</module>
         <module>user-api</module>
-        <module>recommend-api</module>
     </modules>
 
     <properties>

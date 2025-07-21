@@ -16,6 +16,30 @@ public class RedisService {
     @Autowired
     public RedisTemplate redisTemplate;
 
+    private static final String USER_PROFILE_PREFIX = "user_profile:";
+
+    /**
+     * 读取用户画像（Hash）数据
+     */
+    public Map<String, Object> getUserProfile(String userId) {
+        String key = USER_PROFILE_PREFIX + userId;
+        Map<String, Object> profileMap = redisTemplate.opsForHash().entries(key);
+        return profileMap != null ? profileMap : Collections.emptyMap();
+    }
+
+    /**
+     * 保存用户画像（Hash）数据
+     */
+    public void setUserProfile(Long userId, Map<String, Object> profile) {
+        if (profile == null || profile.isEmpty()) {
+            return;
+        }
+        String key = USER_PROFILE_PREFIX + userId;
+        redisTemplate.opsForHash().putAll(key, profile);
+        // 可以设置过期时间，例如30天
+        redisTemplate.expire(key, 30, TimeUnit.DAYS);
+    }
+
     /**
      * 缓存基本的对象，Integer、String、实体类等
      *
