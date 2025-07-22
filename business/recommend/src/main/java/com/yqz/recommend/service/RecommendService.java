@@ -1,9 +1,10 @@
 package com.yqz.recommend.service;
 
 import com.yqz.recommend.dto.RankedItem;
+import com.yqz.recommend.vo.RecommendVo;
 
 import java.util.List;
 
 public interface RecommendService {
-    List<RankedItem> recommend(String userId);
+    List<RecommendVo> recommend(String userId);
 }

@@ -16,6 +16,7 @@
         <module name="order-api" />
         <module name="common-redis" />
         <module name="common-schedule" />
+        <module name="flink" />
         <module name="feed" />
         <module name="user-api" />
         <module name="common-kafka" />
@@ -55,6 +56,7 @@
       <module name="data" options="-parameters" />
       <module name="feed" options="-parameters" />
       <module name="feed-api" options="-parameters" />
+      <module name="flink" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="interaction" options="-parameters" />
       <module name="interaction-api" options="-parameters" />
