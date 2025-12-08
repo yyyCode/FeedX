@@ -12,11 +12,9 @@
         <module name="common-canal" />
         <module name="count" />
         <module name="common-log" />
-        <module name="recommend" />
         <module name="order-api" />
         <module name="common-redis" />
         <module name="common-schedule" />
-        <module name="flink" />
         <module name="feed" />
         <module name="user-api" />
         <module name="common-kafka" />
@@ -34,8 +32,10 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="data" target="17" />
+      <module name="flink" target="1.8" />
       <module name="kafka" target="17" />
       <module name="profile" target="17" />
+      <module name="recommend" target="17" />
       <module name="recommend-api" target="1.8" />
       <module name="redis" target="17" />
     </bytecodeTargetLevel>
