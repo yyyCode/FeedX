@@ -1,9 +1,9 @@
-ddserver:
-  port: 8882
+server:
+  port: 8883
 
 spring:
   application:
-    name: count
+    name: feed
   data:
     redis:
 
@@ -65,6 +65,7 @@ dubbo:
     serialization: fastjson2
   registry:
     address: nacos://10.21.32.86:8848
+
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
