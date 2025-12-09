@@ -65,7 +65,6 @@ public class FeedServiceImpl implements FeedService {
 
     @Override
     public List<FeedVo> feed(Long userId, Integer size) {
-        /*ArrayList<FeedVo> feedVos = new ArrayList<>();*/
         // TODO: 获取offset
         Long lastOffset = (Long)redisTemplate.opsForValue().get(userId.toString() + ":feed:" + "offset");
         if (lastOffset == null) {
