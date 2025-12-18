@@ -1,6 +1,5 @@
 package com.yqz.user.api;
 
-import com.yqz.core.entity.UserHistory;
 import com.yqz.user.dto.UserDTO;
 
 import java.util.List;
@@ -18,5 +17,4 @@ public interface UserServiceI {
 
     UserDTO getUserDTOByLogin(String username,String password);
 
-    List<UserHistory> getUserHistoryById(Long userId);
 }

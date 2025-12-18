@@ -5,6 +5,7 @@ import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 
 import org.redisson.config.Config;
+import org.redisson.codec.JsonJacksonCodec;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnSingleCandidate;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.context.annotation.Bean;
@@ -26,24 +27,17 @@ public class RedissionConfig {
     @Bean(name = "redissonClient")
     public RedissonClient redissonClient() {
         Config config = new Config();
-//        String url = REDISSON_PREFIX + redisProperties.getHost() + ":" + redisProperties.getPort();
-        // 这里以单台redis服务器为例
-//        config.useSingleServer()
-//            .setAddress(url)
-//            .setPassword(redisProperties.getPassword())
-//            .setDatabase(redisProperties.getDatabase())
-//            .setPingConnectionInterval(2000);
-//        config.setLockWatchdogTimeout(10000L);
+        // 使用Jackson JSON编解码器替代默认的FST编解码器，避免Java 17的反射访问限制
+        config.setCodec(new JsonJacksonCodec());
 
-        // 实际开发过程中应该为cluster或者哨兵模式，这里以cluster为例
-        config.useClusterServers()
-                .addNodeAddress("redis://10.21.32.86:6371")
-                .addNodeAddress("redis://10.21.32.86:6372")
-                .addNodeAddress("redis://10.21.32.39:6373")
-                .addNodeAddress("redis://10.21.32.39:6374")
-                .addNodeAddress("redis://10.21.32.141:6375")
-                .addNodeAddress("redis://10.21.32.141:6376")
-                .setPassword("hthredis");
+        // 单机模式配置
+        String url = REDISSON_PREFIX + redisProperties.getHost() + ":" + redisProperties.getPort();
+        config.useSingleServer()
+            .setAddress(url)
+            .setPassword(redisProperties.getPassword())
+            .setDatabase(redisProperties.getDatabase())
+            .setPingConnectionInterval(2000);
+        config.setLockWatchdogTimeout(10000L);
 
         try {
             return Redisson.create(config);

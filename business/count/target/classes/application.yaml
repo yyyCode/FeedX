@@ -6,24 +6,15 @@ spring:
     name: count
   data:
     redis:
-
-      cluster:
-        nodes: 10.21.32.168:6371,10.21.32.168:6372,10.21.32.86:6373,10.21.32.86:6374,10.21.32.39:6375,10.21.32.39:6376
-        max-redirects: 3
-      lettuce:
-        pool:
-          min-idle: 0
-          max-idle: 8
-          max-wait: -1ms
-          max-active: 8
-        cluster:
-          refresh:
-            adaptive: true
-            period: 2000
+      database: 1
+      host: 10.21.32.13
+      port: 6379
+      timeout: 3000
+      password: 12345678
 
   # 卡夫卡配置
   kafka:
-    bootstrap-servers: 10.21.32.168:9092
+    bootstrap-servers: 10.21.32.13:9092
     # 生产者
     producer:
       retries: 3 # 设置大于 0 的值，则客户端会将发送失败的记录重新发送
@@ -64,7 +55,16 @@ dubbo:
     port: -1
     serialization: fastjson2
   registry:
-    address: nacos://10.21.32.86:8848
+    address: nacos://10.21.32.13:8848
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+minio:
+  bucket1:
+    endpoint: http://10.21.32.13:9000
+    port: 9000
+    accessKey: minio
+    secretKey: minio123
+    bucket: feedx
+    publicEndpoint: http://10.21.32.13:9000
