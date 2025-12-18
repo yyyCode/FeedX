@@ -5,9 +5,7 @@ import com.yqz.redis.service.RedisService;
 import com.yqz.user.po.User;
 import com.yqz.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
@@ -19,6 +17,7 @@ import java.time.LocalDate;
  **/
 @RestController
 @RequestMapping("/api/user")
+
 public class UserController {
 
     @Autowired
@@ -27,10 +26,10 @@ public class UserController {
     @Autowired
     private RedisService redisService;
 
-    @GetMapping("/login")
-    public CommonResult<String> login(String username, String password){
-
-        User user=userService.login(username,password);
+    @PostMapping("/login")
+    public CommonResult<String> login(@RequestBody User loginUser){
+        //查询登录的用户
+        User user=userService.login(loginUser.getUsername(),loginUser.getPassword());
         if (user==null){
             return CommonResult.fail("用户名或密码错误");
         }else{

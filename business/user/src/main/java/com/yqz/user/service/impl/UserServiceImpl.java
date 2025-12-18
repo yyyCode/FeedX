@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yqz.user.mapper.UserMapper;
 import com.yqz.user.po.User;
 import com.yqz.user.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 
@@ -15,12 +16,14 @@ import org.springframework.stereotype.Service;
 * @createDate 2023-11-01 16:39:06
 */
 @Service
+@Slf4j
 public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     implements UserService {
 
 
     @Override
     public User login(String username, String password) {
+        log.info("用户登录，用户名：{}", username);
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(User::getUsername,username)
                 .eq(User::getPassword,password);
