@@ -1,59 +1,47 @@
 package com.yqz.redis.redisson.delay;
 
-import com.yqz.redis.redisson.delay.handle.RedisDelayQueueHandle;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.ApplicationContext;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.Map;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
+import java.util.concurrent.TimeUnit;
 @Slf4j
 @Component
-public class RedisDelayQueueRunner implements CommandLineRunner {
-
-    @Resource
-    private RedisDelayQueueUtil redisDelayQueueUtil;
+public class RedisDelayQueueRunner {
 
     @Autowired
-    private ApplicationContext context;
+    private RedisDelayQueueUtil redisDelayQueueUtil;
 
     @Autowired
     private ThreadPoolTaskExecutor ptask;
 
-    ThreadPoolExecutor executorService = new ThreadPoolExecutor(
-            3,
-            5,
-            30,
-            TimeUnit.SECONDS,
-            new LinkedBlockingQueue<Runnable>(1000),
-            new ThreadPoolExecutor.AbortPolicy());
-
-    @Override
-    public void run(String... args) throws Exception {
+    @EventListener(ApplicationReadyEvent.class)
+    public void listen() {
         ptask.execute(() -> {
-            while (true){
+            while (true) {
                 try {
-                    RedisDelayQueueEnum[] queueEnums = RedisDelayQueueEnum.values();
-                    for (RedisDelayQueueEnum queueEnum : queueEnums) {
-                        Map<Object,Object> value = redisDelayQueueUtil.getDelayQueue(queueEnum.getCode());
-                        if (value != null) {
-                            RedisDelayQueueHandle<Map<Object,Object>> redisDelayQueueHandle = (RedisDelayQueueHandle<Map<Object,Object>>)context.getBean(queueEnum.getBeanId());
-                            executorService.execute(() -> {redisDelayQueueHandle.execute(value);});
-                        }
+                    Map<Object,Object> value =
+                            redisDelayQueueUtil.getDelayQueue("TEST_QUEUE");
+
+                    if (value != null) {
+                        log.info("收到延迟消息: {}", value);
                     }
+
                     TimeUnit.MILLISECONDS.sleep(500);
-                } catch (InterruptedException e) {
-                    log.error("(Redission延迟队列监测异常中断) {}", e.getMessage());
+                } catch (Exception e) {
+                    log.error("延迟队列监听异常", e);
+                    try {
+                        TimeUnit.SECONDS.sleep(2); // ❗ 防止刷日志
+                    } catch (InterruptedException ignored) {}
                 }
             }
         });
-        log.info("(Redission延迟队列监测启动成功)");
+
+        log.info("Redisson 延迟队列监听启动成功");
     }
 }

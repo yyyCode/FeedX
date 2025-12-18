@@ -6,44 +6,42 @@ import org.redisson.api.RedissonClient;
 
 import org.redisson.config.Config;
 import org.redisson.codec.JsonJacksonCodec;
+import org.redisson.config.SingleServerConfig;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnSingleCandidate;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
-
+import javax.annotation.PostConstruct;
 @Slf4j
 @Configuration
 public class RedissionConfig {
-    private final String REDISSON_PREFIX = "redis://";
-    private final RedisProperties redisProperties;
 
-    public RedissionConfig(RedisProperties redisProperties) {
-        this.redisProperties = redisProperties;
-    }
+    private static final String REDIS_ADDRESS = "redis://10.21.32.13:6379";
+    private static final int DATABASE = 0;
+    private static final String PASSWORD = "12345678"; // 没密码就写 null
 
-    @Bean(name = "redissonClient")
+    @Bean(destroyMethod = "shutdown")
     public RedissonClient redissonClient() {
         Config config = new Config();
-        // 使用Jackson JSON编解码器替代默认的FST编解码器，避免Java 17的反射访问限制
         config.setCodec(new JsonJacksonCodec());
 
-        // 单机模式配置
-        String url = REDISSON_PREFIX + redisProperties.getHost() + ":" + redisProperties.getPort();
-        config.useSingleServer()
-            .setAddress(url)
-            .setPassword(redisProperties.getPassword())
-            .setDatabase(redisProperties.getDatabase())
-            .setPingConnectionInterval(2000);
-        config.setLockWatchdogTimeout(10000L);
+        SingleServerConfig serverConfig = config.useSingleServer()
+                .setAddress(REDIS_ADDRESS)
+                .setDatabase(DATABASE)
+                .setPingConnectionInterval(2000);
 
-        try {
-            return Redisson.create(config);
-        } catch (Exception e) {
-            log.error("RedissonClient init redis url:[{}], Exception:", 1, e);
-            return null;
+        if (PASSWORD != null && !PASSWORD.isEmpty()) {
+            serverConfig.setPassword(PASSWORD);
         }
+
+        config.setLockWatchdogTimeout(10_000L);
+
+        log.info("Redisson hard-code config init, address={}", REDIS_ADDRESS);
+
+        return Redisson.create(config);
     }
 }
