@@ -1,5 +1,6 @@
 package com.yqz.user.controller;
 
+import com.yqz.core.domain.CommonResult;
 import com.yqz.redis.service.RedisService;
 import com.yqz.user.po.User;
 import com.yqz.user.service.UserService;
@@ -26,31 +27,14 @@ public class UserController {
     @Autowired
     private RedisService redisService;
 
-    @GetMapping("/testMp")
-    public String testMp(){
-        User user = new User();
+    @GetMapping("/login")
+    public CommonResult<String> login(String username, String password){
 
-        user.setBirthday(LocalDate.now());
-
-
-//        user.setId(0L);
-        user.setUsername("dwad");
-        user.setPassword("dwad");
-        user.setNickName("e2q2e");
-        user.setPhoneNumber("123123");
-        user.setEmail("dwdadw");
-        user.setGender((byte)1);
-//        user.setDeleted((byte) 0);
-        userService.save(user);
-//        User user = userService.getById(1719711995323564033L);
-//        redisService.setCacheObject("user", user);
-//        User user1 = redisService.getCacheObject("user");
-//        System.out.println(user1);
-//        user.setNickName("ysmhhh");
-//        userService.updateById(user);
-//        userService.removeById(user);
-
-
-        return "success";
+        User user=userService.login(username,password);
+        if (user==null){
+            return CommonResult.fail("用户名或密码错误");
+        }else{
+           return CommonResult.ok("登录成功");
+        }
     }
 }
